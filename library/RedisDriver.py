@@ -42,6 +42,9 @@ class RedisDriver:
     def hget(self, name, key):
         value = self.redis.hget(name, key)
 
+        if not value:
+            return None
+
         dt = self.__parse_datetime_if_iso_format(value)
         if dt:
             return dt
