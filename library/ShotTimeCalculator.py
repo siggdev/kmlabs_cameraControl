@@ -56,3 +56,9 @@ class ShotTimeCalculator:
         # floor to 10 minutes, if interval is mod 5
         elif (self.interval.seconds / 60) % 5 == 0:
             self.start_time = self.start_time - timedelta(minutes=self.start_time.minute % 10)
+
+    def write_to_redis(self):
+        self.redis.delete('shot_times')
+
+        for shot_time in self.shot_times:
+            self.redis.rpush('shot_times', shot_time)
