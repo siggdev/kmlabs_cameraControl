@@ -1,6 +1,7 @@
 from RedisDriver import RedisDriver
 from datetime import datetime, timedelta
 
+
 class ShotTimeCalculator:
     def __init__(self):
         self.shot_times = []
