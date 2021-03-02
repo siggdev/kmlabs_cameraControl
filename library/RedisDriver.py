@@ -14,7 +14,6 @@ class RedisDriver:
 
         self.__iso_date_regex = r'^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])?$'
 
-
     def __parse_datetime_if_iso_format(self, value):
         if re.fullmatch(self.__iso_datetime_regex, value) is not None:
             return datetime.fromisoformat(value)
@@ -27,21 +26,17 @@ class RedisDriver:
         else:
             return False
 
-    def hset(self, name, key, value):
+    def __convert_python_to_redis(self, value):
         if isinstance(value, datetime):
-            redis_value = value.isoformat()
+            return value.isoformat()
         elif isinstance(value, date):
-            redis_value = value.isoformat()
+            return value.isoformat()
         elif isinstance(value, timedelta):
-            redis_value = value.seconds
+            return value.seconds
         else:
-            redis_value = value
+            return value
 
-        self.redis.hset(name, key, redis_value)
-
-    def hget(self, name, key):
-        value = self.redis.hget(name, key)
-
+    def __convert_redis_to_python(self, value):
         if not value:
             return None
 
@@ -54,3 +49,15 @@ class RedisDriver:
             return d
 
         return value
+
+    def hset(self, name, key, value):
+        redis_value = self.__convert_python_to_redis(value)
+        self.redis.hset(name, key, redis_value)
+
+    def hget(self, name, key):
+        value = self.redis.hget(name, key)
+        return self.__convert_redis_to_python(value)
+
+    def rpush(self, name, value):
+        redis_value = self.__convert_python_to_redis(value)
+        self.redis.rpush(name, redis_value)
