@@ -64,3 +64,9 @@ class SunTimesLoader:
             return False
 
         return True
+
+    def set_utc(self, utc):
+        if utc:
+            self.utc = True
+        else:
+            self.utc = False
