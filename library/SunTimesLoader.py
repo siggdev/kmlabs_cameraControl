@@ -55,3 +55,12 @@ class SunTimesLoader:
         if not self.utc:
             parsed_time = parsed_time.replace(tzinfo=timezone.utc).astimezone(tz=None)
         return parsed_time
+
+    def set_location(self, lat, lng):
+        try:
+            self.lat = float(lat)
+            self.lng = float(lng)
+        except ValueError:
+            return False
+
+        return True
