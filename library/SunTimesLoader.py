@@ -70,3 +70,9 @@ class SunTimesLoader:
             self.utc = True
         else:
             self.utc = False
+
+    def set_request_date(self, request_date):
+        if not isinstance(request_date, datetime):
+            return False
+        self.date = request_date
+        return True
