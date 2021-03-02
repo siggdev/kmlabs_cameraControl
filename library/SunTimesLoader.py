@@ -76,3 +76,11 @@ class SunTimesLoader:
             return False
         self.date = request_date
         return True
+
+    def do_request(self):
+        if self.__request_api():
+            self.__parse_times()
+            self.valid = True
+            return self.valid
+        self.valid = False
+        return self.valid
