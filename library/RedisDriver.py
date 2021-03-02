@@ -30,6 +30,8 @@ class RedisDriver:
     def hset(self, name, key, value):
         if isinstance(value, datetime):
             redis_value = value.isoformat()
+        elif isinstance(value, date):
+            redis_value = value.isoformat()
         elif isinstance(value, timedelta):
             redis_value = value.seconds
         else:
