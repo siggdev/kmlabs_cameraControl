@@ -1,10 +1,12 @@
 import json
 import requests
+from RedisDriver import RedisDriver
 from datetime import date, datetime, timezone, timedelta
 
 
 class SunTimesLoader:
     def __init__(self, lat=48.137154, lng=11.576124, request_date=date.today(), utc=False):
+        self.red = RedisDriver()
         self.lat = lat
         self.lng = lng
         self.utc = utc
@@ -84,3 +86,16 @@ class SunTimesLoader:
             return self.valid
         self.valid = False
         return self.valid
+
+    def write_to_redis(self):
+        self.red.hset('suntimes', 'date', self.date)
+        self.red.hset('suntimes', 'sunrise', self.sunrise)
+        self.red.hset('suntimes', 'sunset', self.sunset)
+        self.red.hset('suntimes', 'solar_noon', self.solar_noon)
+        self.red.hset('suntimes', 'day_length', self.day_length)
+        self.red.hset('suntimes', 'civil_twilight_begin', self.civil_twilight_begin)
+        self.red.hset('suntimes', 'civil_twilight_end', self.civil_twilight_end)
+        self.red.hset('suntimes', 'nautical_twilight_begin', self.nautical_twilight_begin)
+        self.red.hset('suntimes', 'nautical_twilight_end', self.nautical_twilight_end)
+        self.red.hset('suntimes', 'astronomical_twilight_begin', self.astronomical_twilight_begin)
+        self.red.hset('suntimes', 'astronomical_twilight_end', self.astronomical_twilight_end)
