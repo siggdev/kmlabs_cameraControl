@@ -62,5 +62,14 @@ class RedisDriver:
         redis_value = self.__convert_python_to_redis(value)
         self.redis.rpush(name, redis_value)
 
+    def lrange(self, name, start, length):
+        array = self.redis.lrange(name, start, length)
+
+        return_array = []
+        for element in array:
+            return_array.append(self.__convert_redis_to_python(element))
+
+        return return_array
+
     def delete(self, name):
         self.redis.delete(name)
