@@ -1,6 +1,6 @@
 import json
 import requests
-from RedisDriver import RedisDriver
+from .RedisDriver import RedisDriver
 from datetime import date, datetime, timezone, timedelta
 
 
