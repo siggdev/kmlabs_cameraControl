@@ -1,10 +1,12 @@
 from .RedisDriver import RedisDriver
 from datetime import datetime
+import RPi.GPIO as GPIO
 
 
 class ShotController:
     def __init__(self):
         self.redis = RedisDriver()
+        GPIO.setmode(GPIO.BOARD)
 
     def get_next_shot_time(self):
         next_shot = self.redis.lrange('shot_times', 0, 0)
