@@ -40,8 +40,9 @@ class ShotTimeCalculator:
                 self.stop_time = datetime.now()
                 self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
 
-        self.interval = timedelta(minutes=self.redis.hget('shot_time_settings', 'interval'))
-        if not self.interval:
+        try:
+            self.interval = timedelta(minutes=self.redis.hget('shot_time_settings', 'interval'))
+        except TypeError:
             self.interval = timedelta(minutes=15)
 
     def __make_nice_start_time(self):
