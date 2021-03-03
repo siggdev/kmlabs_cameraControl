@@ -62,5 +62,5 @@ class RedisDriver:
         redis_value = self.__convert_python_to_redis(value)
         self.redis.rpush(name, redis_value)
 
-    def delete(self, *names):
-        self.redis.delete(names)
+    def delete(self, name):
+        self.redis.delete(name)
