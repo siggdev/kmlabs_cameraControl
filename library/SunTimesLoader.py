@@ -38,6 +38,8 @@ class SunTimesLoader:
         if self.__api_result['status'] != 'OK':
             return False
 
+        self.__api_result = self.__api_result['results']
+
         return True
 
     def __parse_times(self):
@@ -52,8 +54,8 @@ class SunTimesLoader:
         self.astronomical_twilight_begin = self.__parse_time('astronomical_twilight_begin')
         self.astronomical_twilight_end = self.__parse_time('astronomical_twilight_end')
 
-    def __parse_time(self, value):
-        parsed_time = datetime.fromisoformat(self.__api_result[value])
+    def __parse_time(self, key):
+        parsed_time = datetime.fromisoformat(self.__api_result[key])
         if not self.utc:
             parsed_time = parsed_time.replace(tzinfo=timezone.utc).astimezone(tz=None)
         return parsed_time
