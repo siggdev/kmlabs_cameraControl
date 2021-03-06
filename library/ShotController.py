@@ -8,6 +8,7 @@ class ShotController:
     def __init__(self):
         self.redis = RedisDriver()
         GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
         GPIO.setup(3, GPIO.OUT, initial=GPIO.HIGH)
 
     def get_next_shot_time(self):
