@@ -3,6 +3,9 @@
                                 <h5 class="card-title">Sonneninfo</h5>
                             </div>
                             <div class="card-body">
+                                {% if sun_times.valid is false %}
+                                <em>Es konnten leider keine g&uuml;ltigen Daten abgerufen werden.</em>
+                                {% else %}
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <img src="assets/img/date.svg" class="radio-image" data-bs-toggle="tooltip" title="Datum">
@@ -49,5 +52,6 @@
                                         {{ sun_times.astronomical_twilight_end.strftime("%H:%M Uhr") }}
                                     </div>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
