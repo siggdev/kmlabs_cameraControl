@@ -16,7 +16,7 @@
 
         <!-- favicon -->
         <!-- TODO -->
-        <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+        <link rel="icon" href="assets/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
 
 
         <!-- site title
@@ -47,30 +47,19 @@
                     <img src="assets/img/logo.png" alt="KM Laboratory" height="24px" width="auto">
                     <small>Kamerasteuerung</small>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
-                    </ul>
-                </div>
             </div>
         </nav>
         <div class="spacer"></div>
         <main class="container">
-            <div class="row">
-                <section class="col-lg-4 col-md-6">
-                    <form>
-                        <div class="card">
+            <form>
+                <div class="row justify-content-center">
+                    <section class="col-xxl-4 col-xl-5 col-lg-6">
+                        <div class="card mt-4">
                             <div class="card-header">
                                 <h5 class="card-title">Kamera Einstellungen</h5>
                             </div>
                             <div class="card-body">
-                                <h6>Wochentage</h6>
-                                <small><em>Bitte hier die Wochentage ausw&auml;hlen, an denen der Cam-Controller Bilder planen soll:</em></small><br><br>
-
+                                <h6>Wochentage:</h6><br>
                                 <input type="checkbox" class="btn-check" id="monday_checkbox" autocomplete="off">
                                 <label class="btn btn-sm btn-outline-primary" for="monday_checkbox">Mo</label>
                                 <input type="checkbox" class="btn-check" id="tuesday_checkbox" autocomplete="off">
@@ -87,14 +76,165 @@
                                 <label class="btn btn-sm btn-outline-primary" for="sunday_checkbox">So</label>
                             </div>
                             <hr>
-                            <div class="card-body">
-                                <h6>Startzeit</h6>
+                            <div class="card-body time-selector">
+                                <h6>Startzeit:</h6><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_sunrise" value="sunrise" checked>
+                                    <label class="form-check-label" for="start_time_sunrise">
+                                        <img src="assets/img/sunrise.svg" class="radio-image"> Sonnenaufgang
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_civil_tl" value="civil">
+                                    <label class="form-check-label" for="start_time_civil_tl">
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_nautical_tl" value="nautical">
+                                    <label class="form-check-label" for="start_time_nautical_tl">
+                                    <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_astronomical_tl" value="astronomical">
+                                    <label class="form-check-label" for="start_time_astronomical_tl">
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_individual" value="individual">
+                                    <label class="form-check-label" for="start_time_individual">
+                                        <div class="input-group">
+                                            <span class="input-group-text">individuell:</span>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06">
+                                            <span class="input-group-text">:</span>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00">
+                                            <span class="input-group-text"> Uhr</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body time-selector">
+                                <h6>Startzeit:</h6><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_sunset" value="sunset" checked>
+                                    <label class="form-check-label" for="stop_time_sunset">
+                                        <img src="assets/img/sunset.svg" class="radio-image"> Sonnenuntergang
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_civil_tl" value="civil">
+                                    <label class="form-check-label" for="stop_time_civil_tl">
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_nautical_tl" value="nautical">
+                                    <label class="form-check-label" for="stop_time_nautical_tl">
+                                    <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_astronomical_tl" value="astronomical">
+                                    <label class="form-check-label" for="stop_time_astronomical_tl">
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_individual" value="individual">
+                                    <label class="form-check-label" for="stop_time_individual">
+                                        <div class="input-group">
+                                            <span class="input-group-text">individuell:</span>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18">
+                                            <span class="input-group-text">:</span>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00">
+                                            <span class="input-group-text"> Uhr</span>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </section>
-            </div>
+                    </section>
+
+                    <section class="col-xxl-4 col-xl-5 col-lg-6">
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Controller-Info</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6>N&auml;chstes Bild in:</h6><br>
+                                <h1 class="text-center">14:35</h1>
+                            </div>
+                        </div>
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Sonneninfo</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <img src="assets/img/date.svg" class="radio-image">
+                                        13.03.2021
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/day_length.svg" class="radio-image">
+                                        9:38:53
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/solar_noon.svg" class="radio-image">
+                                        12:25 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/sunrise.svg" class="radio-image">
+                                        06:49 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/sunset.svg" class="radio-image">
+                                        18:01 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image">
+                                        06:18 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/civil_twilight_end.svg" class="radio-image">
+                                        18:32 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/nautical_twilight_begin.svg" class="radio-image">
+                                        05:42 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/nautical_twilight_end.svg" class="radio-image">
+                                        19:08 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image">
+                                        05:05 Uhr
+                                    </div>
+                                    <div class="col-6 mt-2">
+                                        <img src="assets/img/astronomical_twilight_end.svg" class="radio-image">
+                                        19:44 Uhr
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Einstellungen &uuml;bernehmen</h5>
+                            </div>
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-warning" value="adhoc">Sofort &uuml;bernehmen</button>
+                                <button type="submit" class="btn btn-primary" value="tomorrow">Ab morgen &uuml;bernehmen</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <script src="assets/js/main.js"></script>
     </body>
 </html>
