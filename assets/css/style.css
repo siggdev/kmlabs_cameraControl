@@ -1,0 +1,16 @@
+.spacer {
+    margin-top: 50px;
+}
+
+.radio-image {
+    height: 16px;
+    width: auto;
+}
+
+.form-check {
+    margin-top: 5px;
+}
+
+.time-selector {
+    line-height: 28px;
+}

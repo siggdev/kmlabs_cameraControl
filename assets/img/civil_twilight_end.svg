@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 150 75.000003"
+   version="1.1"
+   sodipodi:docname="civil_twilight_end.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   width="150"
+   height="75">
+  <metadata
+     id="metadata4193">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>eye-scanning</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1848"
+     inkscape:window-height="1016"
+     id="namedview4191"
+     showgrid="false"
+     inkscape:zoom="6.8448403"
+     inkscape:cx="87.154832"
+     inkscape:cy="26.904091"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer5"
+     fit-margin-top="-2.7755576e-17"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="2.7755576e-17" />
+  <defs
+     id="defs4184">
+    <style
+       id="style4182">.cls-1{fill-rule:evenodd;}</style>
+  </defs>
+  <title
+     id="title4186">eye-scanning</title>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Layer 1"
+     transform="translate(9.3304899,-11.223851)">
+    <path
+       style="fill-rule:evenodd;stroke-width:1.1527015"
+       d="m 62.725304,11.241666 c -20.22991,0.426499 -39.849069,8.494419 -56.3788073,23.479538 -3.7713735,3.44859 -7.2962427,7.158885 -10.5476688,11.101505 -1.3980389,1.46779 -1.5113492,3.736628 -0.2656616,5.335748 5.5563656,6.969226 12.0671353,13.121714 19.3415197,18.272118 15.426566,10.945405 33.879545,16.813533 52.794626,16.792968 18.743537,0.05102 36.951828,-6.250886 51.653188,-17.878128 6.19313,-4.971325 11.65355,-10.792301 16.21886,-17.290522 1.16265,-1.574393 1.05113,-3.750466 -0.26566,-5.198413 -4.01721,-4.431166 -8.34738,-8.568724 -12.95663,-12.380284 C 103.61073,18.041524 82.955214,10.815166 62.725304,11.241666 Z m 0.103563,8.172473 c 18.270318,-0.380391 37.092047,6.236025 54.255763,20.368145 3.4327,2.863148 6.69702,5.922043 9.77545,9.163076 -3.69235,4.814511 -7.94939,9.168298 -12.67972,12.967891 -13.2444,10.47927 -29.644849,16.167157 -46.533562,16.13782 C 50.426718,78.053711 33.630592,72.701012 19.589055,62.732749 13.88698,58.678211 8.7018438,53.943623 4.1446565,48.63467 6.5720423,45.873744 9.1494505,43.248897 11.866855,40.772886 H 11.80832 C 26.839547,27.101847 44.558549,19.794531 62.828867,19.414139 Z m 2.638605,6.166502 c -12.78332,0 -23.146335,10.363018 -23.146335,23.146335 0,20.622537 24.930978,30.945777 39.511544,16.365209 C 96.413248,50.511617 86.090004,25.580641 65.467472,25.580641 Z m -6.522218,3.586432 H 71.561932 V 47.887216 H 82.857055 L 65.251341,68.615579 65.095997,68.430966 47.65013,47.887216 l 11.295124,-0.0045 z"
+       id="path4188"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Layer 2"
+     transform="translate(9.3304899,-11.223851)" />
+</svg>
