@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from .SunTimesLoader import SunTimesLoader
 from .ShotController import ShotController
 
@@ -17,4 +17,4 @@ class WebController:
         return render_template('index.html', sun_times=sun_times, shot_controller=shot_controller)
 
     def changeSettings(self):
-        return render_template('index.html')
+        return request.data
