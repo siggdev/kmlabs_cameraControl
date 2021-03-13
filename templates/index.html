@@ -1,5 +1,129 @@
-{% extends layouts/base.html %}
-
+{% extends "layouts/base.html" %}
 {% block content %}
+{% include "partials/nav.html" %}
+        <div class="spacer"></div>
+        <main class="container">
+            <form>
+                <div class="row justify-content-center">
+                    <section class="col-xxl-4 col-xl-5 col-lg-6">
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Kamera Einstellungen</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6>Wochentage:</h6><br>
+                                <input type="checkbox" class="btn-check" id="monday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="monday_checkbox">Mo</label>
+                                <input type="checkbox" class="btn-check" id="tuesday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="tuesday_checkbox">Di</label>
+                                <input type="checkbox" class="btn-check" id="wednesday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="wednesday_checkbox">Mi</label>
+                                <input type="checkbox" class="btn-check" id="thursday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="thursday_checkbox">Do</label>
+                                <input type="checkbox" class="btn-check" id="friday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="friday_checkbox">Fr</label>
+                                <input type="checkbox" class="btn-check" id="saturday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="saturday_checkbox">Sa</label>
+                                <input type="checkbox" class="btn-check" id="sunday_checkbox" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="sunday_checkbox">So</label>
+                            </div>
+                            <hr>
+                            <div class="card-body time-selector">
+                                <h6>Startzeit:</h6><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_sunrise" value="sunrise" checked>
+                                    <label class="form-check-label" for="start_time_sunrise">
+                                        <img src="assets/img/sunrise.svg" class="radio-image"> Sonnenaufgang
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_civil_tl" value="civil">
+                                    <label class="form-check-label" for="start_time_civil_tl">
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_nautical_tl" value="nautical">
+                                    <label class="form-check-label" for="start_time_nautical_tl">
+                                    <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_astronomical_tl" value="astronomical">
+                                    <label class="form-check-label" for="start_time_astronomical_tl">
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_individual" value="individual">
+                                    <label class="form-check-label" for="start_time_individual">
+                                        <div class="input-group">
+                                            <span class="input-group-text">individuell:</span>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06">
+                                            <span class="input-group-text">:</span>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00">
+                                            <span class="input-group-text"> Uhr</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body time-selector">
+                                <h6>Startzeit:</h6><br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_sunset" value="sunset" checked>
+                                    <label class="form-check-label" for="stop_time_sunset">
+                                        <img src="assets/img/sunset.svg" class="radio-image"> Sonnenuntergang
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_civil_tl" value="civil">
+                                    <label class="form-check-label" for="stop_time_civil_tl">
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_nautical_tl" value="nautical">
+                                    <label class="form-check-label" for="stop_time_nautical_tl">
+                                    <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_astronomical_tl" value="astronomical">
+                                    <label class="form-check-label" for="stop_time_astronomical_tl">
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_individual" value="individual">
+                                    <label class="form-check-label" for="stop_time_individual">
+                                        <div class="input-group">
+                                            <span class="input-group-text">individuell:</span>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18">
+                                            <span class="input-group-text">:</span>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00">
+                                            <span class="input-group-text"> Uhr</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
+                    <section class="col-xxl-4 col-xl-5 col-lg-6">
+{% include "partials/controller_info_panel.html" %}
+{% include "partials/sun_info_panel.html" %}
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5 class="card-title">Einstellungen &uuml;bernehmen</h5>
+                            </div>
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-warning" value="adhoc">Sofort &uuml;bernehmen</button>
+                                <button type="submit" class="btn btn-primary" value="tomorrow">Ab morgen &uuml;bernehmen</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </main>
 {% endblock %}
