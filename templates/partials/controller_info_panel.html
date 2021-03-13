@@ -1,9 +1,31 @@
                         <div class="card mt-4">
                             <div class="card-header">
-                                <h5 class="card-title">Controller-Info</h5>
+                                <a href="/" class="btn btn-primary float-end"><img src="assets/img/reload-icon.svg" width="18" height="auto"></a><h5 class="card-title">Controller-Info</h5>
                             </div>
                             <div class="card-body">
+                                {% if shot_controller.get_next_shot_time is none %}
+                                <em>F&uuml;r heute sind keine weiteren Bilder geplant.</em>
+                                {% else %}
                                 <h6>N&auml;chstes Bild in:</h6><br>
-                                <h1 class="text-center">14:35</h1>
+                                <h1 class="text-center" id="shot-countdown">--:--</h1>
+                                <script>
+                                    var seconds = {{ shot_controller.calculate_time_until_next_shot().seconds }};
+
+                                    var x = setInterval(function() {
+                                        seconds -= 1;
+
+                                        if(seconds < 1)
+                                            clearInterval(x);
+
+                                        var hours = Math.floor(seconds / 3600);
+                                        var minutes = Math.floor(seconds / 60) % 60;
+
+                                        if(hours > 0)
+                                            document.getElementById("shot-countdown").innerHTML = `${hours.toString().padStart(2, 0)}:${minutes.toString().padStart(2, 0)}:${(seconds%60).toString().padStart(2, 0)}`;
+                                        else
+                                            document.getElementById("shot-countdown").innerHTML = `${minutes.toString().padStart(2, 0)}:${(seconds%60).toString().padStart(2, 0)}`;
+                                    }, 1000)
+                                </script>
+                                {% endif %}
                             </div>
                         </div>

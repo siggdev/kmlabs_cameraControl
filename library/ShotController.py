@@ -1,5 +1,5 @@
 from .RedisDriver import RedisDriver
-from datetime import datetime
+from datetime import datetime, timedelta
 from time import sleep
 import RPi.GPIO as GPIO
 
@@ -18,6 +18,14 @@ class ShotController:
             return next_shot[0]
 
         return None
+
+    def calculate_time_until_next_shot(self):
+        next_shot = self.get_next_shot_time()
+        print(next_shot.isoformat())
+        current_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
+        print(current_time.isoformat())
+
+        return timedelta(seconds=672)
 
     def check_if_next_shot_is_due(self):
         actual_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
