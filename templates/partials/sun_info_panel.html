@@ -5,48 +5,48 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <img src="assets/img/date.svg" class="radio-image">
-                                        13.03.2021
+                                        <img src="assets/img/date.svg" class="radio-image" data-bs-toggle="tooltip" title="Datum">
+                                        {{ sun_times.sunrise.strftime("%d.%m.%Y") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/day_length.svg" class="radio-image">
-                                        9:38:53
+                                        <img src="assets/img/day_length.svg" class="radio-image" data-bs-toggle="tooltip" title="L&auml;nge des Tages (Sonnenauf- bis Sonnenuntergang)">
+                                        {{ sun_times.day_length.seconds//3600 }}:{{ (sun_times.day_length.seconds//60)%60 }}:{{ sun_times.day_length.seconds%60 }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/solar_noon.svg" class="radio-image">
-                                        12:25 Uhr
+                                        <img src="assets/img/solar_noon.svg" class="radio-image" data-bs-toggle="tooltip" title="Sonnenh&ouml;chststand">
+                                        {{ sun_times.solar_noon.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/sunrise.svg" class="radio-image">
-                                        06:49 Uhr
+                                        <img src="assets/img/sunrise.svg" class="radio-image" data-bs-toggle="tooltip" title="Sonnenaufgang">
+                                        {{ sun_times.sunrise.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/sunset.svg" class="radio-image">
-                                        18:01 Uhr
+                                        <img src="assets/img/sunset.svg" class="radio-image" data-bs-toggle="tooltip" title="Sonnenuntergang">
+                                        {{ sun_times.sunset.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image">
-                                        06:18 Uhr
+                                        <img src="assets/img/civil_twilight_begin.svg" class="radio-image" data-bs-toggle="tooltip" title="Zwielicht">
+                                        {{ sun_times.civil_twilight_begin.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/civil_twilight_end.svg" class="radio-image">
-                                        18:32 Uhr
+                                        <img src="assets/img/civil_twilight_end.svg" class="radio-image" data-bs-toggle="tooltip" title="Zwielicht">
+                                        {{ sun_times.civil_twilight_end.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/nautical_twilight_begin.svg" class="radio-image">
-                                        05:42 Uhr
+                                        <img src="assets/img/nautical_twilight_begin.svg" class="radio-image" data-bs-toggle="tooltip" title="nautisches Zwielicht">
+                                        {{ sun_times.nautical_twilight_begin.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/nautical_twilight_end.svg" class="radio-image">
-                                        19:08 Uhr
+                                        <img src="assets/img/nautical_twilight_end.svg" class="radio-image" data-bs-toggle="tooltip" title="nautisches Zwielicht">
+                                        {{ sun_times.nautical_twilight_end.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image">
-                                        05:05 Uhr
+                                        <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image" data-bs-toggle="tooltip" title="astronomisches Zwielicht">
+                                        {{ sun_times.astronomical_twilight_begin.strftime("%H:%M Uhr") }}
                                     </div>
                                     <div class="col-6 mt-2">
-                                        <img src="assets/img/astronomical_twilight_end.svg" class="radio-image">
-                                        19:44 Uhr
+                                        <img src="assets/img/astronomical_twilight_end.svg" class="radio-image" data-bs-toggle="tooltip" title="astronomisches Zwielicht">
+                                        {{ sun_times.astronomical_twilight_end.strftime("%H:%M Uhr") }}
                                     </div>
                                 </div>
                             </div>
