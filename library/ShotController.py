@@ -41,5 +41,6 @@ class ShotController:
 
     def make_shot_if_due(self):
         if self.check_if_next_shot_is_due():
+            self.redis.lpop('shot_times')
             self.make_shot()
 

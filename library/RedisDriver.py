@@ -71,5 +71,8 @@ class RedisDriver:
 
         return return_array
 
+    def lpop(self, name):
+        return self.redis.lpop(name);
+
     def delete(self, name):
         self.redis.delete(name)
