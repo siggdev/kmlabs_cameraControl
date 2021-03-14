@@ -23,7 +23,10 @@ class ShotController:
         next_shot = self.get_next_shot_time()
         current_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
-        return timedelta(seconds=672)
+        if(next_shot is None):
+            return None
+        else:
+            return next_shot - current_time
 
     def check_if_next_shot_is_due(self):
         actual_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
