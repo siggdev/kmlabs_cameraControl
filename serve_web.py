@@ -1,5 +1,5 @@
 from library.WebController import WebController
-from flask import Flask
+from flask import Flask, redirect
 
 app = Flask('CamControl', template_folder='templates', static_folder='assets')
 controller = WebController(app);
@@ -13,6 +13,16 @@ def index():
 @app.route('/', methods=['POST'])
 def save():
     return controller.changeSettings()
+
+
+@app.route('/getseconds', methods=['GET'])
+def getSecs():
+    return controller.returnSecondsToNextShot()
+
+
+@app.route('/favicon.ico', methods=['GET'])
+def serveFavicon():
+    redirect('assets/favicon.ico')
 
 
 app.run('localhost', 5000, True);
