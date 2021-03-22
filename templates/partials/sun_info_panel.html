@@ -3,7 +3,7 @@
                                 <h5 class="card-title">Sonneninfo</h5>
                             </div>
                             <div class="card-body">
-                                {% if sun_times.valid %}
+                                {% if not sun_times.valid %}
                                 <em>Es konnten leider keine g&uuml;ltigen Daten abgerufen werden.</em>
                                 {% else %}
                                 <div class="row">
