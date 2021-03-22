@@ -23,6 +23,9 @@ class ShotController:
         next_shot = self.get_next_shot_time()
         current_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
+        print(next_shot.isoformat())
+        print(current_time.isoformat)
+
         if(next_shot is None):
             return None
         else:

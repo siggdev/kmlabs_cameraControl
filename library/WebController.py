@@ -18,9 +18,9 @@ class WebController:
         remaining_time = self.shot_controller.calculate_time_until_next_shot()
         
         if remaining_time is None:
-            return "-1"
+            return "{ 'seconds': -1 }"
         
-        return str(remaining_time.seconds)
+        return '{ "seconds": ' + str(remaining_time.seconds) + " }"
 
     def changeSettings(self):
         return request.data
