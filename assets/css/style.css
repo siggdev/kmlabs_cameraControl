@@ -14,3 +14,7 @@
 .time-selector {
     line-height: 28px;
 }
+
+input[type=number] {
+    text-align: right;
+}

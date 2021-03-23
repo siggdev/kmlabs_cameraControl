@@ -20,9 +20,6 @@ def getSecs():
     return controller.returnSecondsToNextShot()
 
 
-@app.route('/favicon.ico', methods=['GET'])
-def serveFavicon():
-    redirect('assets/favicon.ico')
 
 
 app.run('localhost', 5000, True);
