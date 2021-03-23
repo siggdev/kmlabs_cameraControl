@@ -7,6 +7,9 @@ const load_seconds = () => {
     })
     .then(json_response => {
         window.seconds = Number(json_response.seconds);
+        if(window.seconds > 0) {
+            window.seconds += 3;
+        }
     })
     .catch(error => {
         console.log(error);
@@ -22,14 +25,11 @@ const show_new_time = () => {
     {
         document.getElementById('shotcounter').style.display = 'none';
         document.getElementById('noshot').style.display = 'block';
+        clearInterval(window.timer);
+    }
+    if(window.seconds == -1) {
+        console.log('loading new shot time');
         load_seconds();
-        if(window.seconds < 0) {
-            clearInterval(x);
-        }
-        else {
-            window.seconds += 3;
-        }
-        return;
     }
     if(window.seconds < 0) {
         return;
@@ -49,4 +49,4 @@ const show_new_time = () => {
 
 load_seconds();
 window.seconds += 3;
-var x = setInterval(show_new_time, 1000);
+window.timer = setInterval(show_new_time, 1000);

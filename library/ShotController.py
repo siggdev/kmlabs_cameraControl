@@ -21,10 +21,8 @@ class ShotController:
 
     def calculate_time_until_next_shot(self):
         next_shot = self.get_next_shot_time()
-        current_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
-        print(next_shot.isoformat())
-        print(current_time.isoformat)
+        current_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
         if(next_shot is None):
             return None
