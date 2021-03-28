@@ -18,6 +18,11 @@ def save():
 @app.route('/getseconds', methods=['GET'])
 def getSecs():
     return controller.returnSecondsToNextShot()
+
+
+@app.route('/makeshot', methods=['GET'])
+def makeShot():
+    return controller.makeManualShot()
     
 
-app.run('localhost', 5000, True);
+app.run('localhost', 5000, True)

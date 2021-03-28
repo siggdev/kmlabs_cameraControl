@@ -22,5 +22,9 @@ class WebController:
         
         return '{ "seconds": ' + str(remaining_time.seconds) + " }"
 
+    def makeManualShot(self):
+        self.shot_controller.make_shot()
+        return 'OK'
+
     def changeSettings(self):
         return str(request.form)

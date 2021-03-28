@@ -1,3 +1,5 @@
+/* Functionality for shot countdown */
+
 let timer = null;
 
 const load_seconds = () => {
@@ -35,7 +37,6 @@ const show_new_time = () => {
 
     document.getElementById('shotcounter').style.display = 'block';
     document.getElementById('noshot').style.display = 'none';
-
     var hours = Math.floor(window.seconds / 3600);
     var minutes = Math.floor(window.seconds / 60) % 60;
 
@@ -48,3 +49,8 @@ const show_new_time = () => {
 load_seconds();
 window.seconds += 3;
 window.timer = setInterval(show_new_time, 1000);
+
+/* Functionality for manual shot */
+const make_manual_shot = () => {
+    fetch('/makeshot')
+}
