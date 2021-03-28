@@ -19,7 +19,6 @@ const load_seconds = () => {
 
 const show_new_time = () => {
     window.seconds -= 1;
-    console.log(window.seconds);
 
     if(window.seconds < -5)
     {
@@ -28,7 +27,6 @@ const show_new_time = () => {
         clearInterval(window.timer);
     }
     if(window.seconds == -1) {
-        console.log('loading new shot time');
         load_seconds();
     }
     if(window.seconds < 0) {
