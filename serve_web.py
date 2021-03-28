@@ -18,8 +18,6 @@ def save():
 @app.route('/getseconds', methods=['GET'])
 def getSecs():
     return controller.returnSecondsToNextShot()
-
-
-
+    
 
 app.run('localhost', 5000, True);

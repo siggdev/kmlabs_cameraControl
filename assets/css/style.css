@@ -18,3 +18,7 @@
 input[type=number] {
     text-align: right;
 }
+
+h6 {
+    font-weight: bold;
+}

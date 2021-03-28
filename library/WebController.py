@@ -23,4 +23,4 @@ class WebController:
         return '{ "seconds": ' + str(remaining_time.seconds) + " }"
 
     def changeSettings(self):
-        return request.data
+        return str(request.form)
