@@ -6,6 +6,7 @@ class ShotTimeCalculator:
     def __init__(self):
         self.shot_times = []
         self.redis = RedisDriver()
+        
 
     def calculate_shot_times(self):
         self.__get_settings_or_default()
@@ -26,19 +27,52 @@ class ShotTimeCalculator:
                 self.shot_times.append(time_counter)
 
     def __get_settings_or_default(self):
-        self.start_time = self.redis.hget('shot_time_settings', 'start_time')
-        if not self.start_time:
+        start_time_setting = self.redis.hget('shot_time_settings', 'start_time')
+        if start_time_setting:
+            if start_time_setting is 'sunrise':
+                self.start_time = self.redis.hget('suntimes', 'sunrise')
+            elif start_time_setting is 'civil':
+                self.start_time = self.redis.hget('suntimes', 'civil_twilight_begin')
+            elif start_time_setting is 'nautical':
+                self.start_time = self.redis.hget('suntimes', 'nautical_twilight_begin')
+            elif start_time_setting is 'astronomical':
+                self.start_time = self.redis.hget('suntimes', 'astronomical_twilight_begin')
+            elif start_time_setting is 'individual':
+                hour = int(self.redis.hget('shot_time_settings', 'start_individual_hour'))
+                minute = int(self.redis.hget('shot_time_settings', 'start_individual_minute'))
+                self.start_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
+            else:
+                self.start_time = None
+        else:
             self.start_time = self.redis.hget('suntimes', 'sunrise')
-            if not self.start_time:
-                self.start_time = datetime.now()
-                self.start_time.replace(hour=6, minute=0, second=0, microsecond=0)
 
-        self.stop_time = self.redis.hget('shot_time_settings', 'stop_time')
-        if not self.stop_time:
+        if not self.start_time:
+            self.start_time = datetime.now()
+            self.start_time.replace(hour=6, minute=0, second=0, microsecond=0)
+
+
+        stop_time_setting = self.redis.hget('shot_time_settings', 'stop_time')
+        if stop_time_setting:
+            if stop_time_setting is 'sunrise':
+                self.stop_time = self.redis.hget('suntimes', 'sunset')
+            elif stop_time_setting is 'civil':
+                self.stop_time = self.redis.hget('suntimes', 'civil_twilight_end')
+            elif stop_time_setting is 'nautical':
+                self.stop_time = self.redis.hget('suntimes', 'nautical_twilight_end')
+            elif stop_time_setting is 'astronomical':
+                self.stop_time = self.redis.hget('suntimes', 'astronomical_twilight_end')
+            elif stop_time_setting is 'individual':
+                hour = int(self.redis.hget('shot_time_settings', 'stop_individual_hour'))
+                minute = int(self.redis.hget('shot_time_settings', 'stop_individual_minute'))
+                self.stop_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
+            else:
+                self.stop_time = None
+        else:
             self.stop_time = self.redis.hget('suntimes', 'sunset')
-            if not self.stop_time:
-                self.stop_time = datetime.now()
-                self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
+            
+        if not self.stop_time:
+            self.stop_time = datetime.now()
+            self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
 
         try:
             self.interval = timedelta(minutes=self.redis.hget('shot_time_settings', 'interval'))
