@@ -7,7 +7,6 @@ class ShotTimeCalculator:
         self.shot_times = []
         self.redis = RedisDriver()
         
-
     def calculate_shot_times(self):
         self.__get_settings_or_default()
         self.__make_nice_start_time()
@@ -69,7 +68,7 @@ class ShotTimeCalculator:
                 self.stop_time = None
         else:
             self.stop_time = self.redis.hget('suntimes', 'sunset')
-            
+
         if not self.stop_time:
             self.stop_time = datetime.now()
             self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
