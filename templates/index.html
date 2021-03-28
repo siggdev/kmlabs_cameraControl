@@ -69,6 +69,9 @@
                                         </div>
                                     </label>
                                 </div>
+                                {% if errors is defined and errors['indiv_start_time']|length %}
+                                    <small style='color: red;'>{{ errors['indiv_start_time'][0] }}</small>
+                                {% endif %}
                             </div>
                             <hr>
                             <div class="card-body time-selector">
@@ -109,14 +112,20 @@
                                         </div>
                                     </label>
                                 </div>
+                                {% if errors is defined and errors['indiv_stop_time']|length %}
+                                    <small style='color: red;'>{{ errors['indiv_stop_time'][0] }}</small>
+                                {% endif %}
                             </div>
                             <hr>
                             <div class="card-body time-selector">
                                 <h6>Interval:</h6><br>
                                 <div class="input-group">
-                                    <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00" min="1" max="1200">
+                                    <input type="number" class="form-control form-control-sm" id="interval" name="interval" placeholder="00" min="1" max="1200">
                                     <span class="input-group-text"> Minuten</span>
                                 </div>
+                                {% if errors is defined and errors['interval']|length %}
+                                    <small style='color: red;'>{{ errors['interval'][0] }}</small>
+                                {% endif %}
                             </div>
                         </div>
                     </section>
@@ -129,8 +138,8 @@
                                 <h5 class="card-title">Einstellungen &uuml;bernehmen</h5>
                             </div>
                             <div class="card-body">
-                                <button type="submit" class="btn btn-warning" value="adhoc">Sofort &uuml;bernehmen</button>
-                                <button type="submit" class="btn btn-primary" value="tomorrow">Ab morgen &uuml;bernehmen</button>
+                                <button type="submit" class="btn btn-warning" name="changeat" value="adhoc">Sofort &uuml;bernehmen</button>
+                                <button type="submit" class="btn btn-primary" name="changeat" value="tomorrow">Ab morgen &uuml;bernehmen</button>
                             </div>
                         </div>
                     </section>
@@ -138,3 +147,4 @@
             </form>
         </main>
 {% endblock %}
+console.log('click')
