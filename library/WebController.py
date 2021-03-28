@@ -1,12 +1,14 @@
 from flask import render_template, request, Response
 from .SunTimesLoader import SunTimesLoader
 from .ShotController import ShotController
+from .RedisDriver import RedisDriver
 
 
 class WebController:
     def __init__(self, flask_app):
         self.app = flask_app
         self.shot_controller = ShotController()
+        self.redis = RedisDriver()
 
     def serveIndexPage(self):
         # load sun info
@@ -38,7 +40,19 @@ class WebController:
         if errors['exist']:
             return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller, errors=errors)
 
-        return str(request.form)
+        self.redis.hset('shot_time_settings', 'start_time', request.form['start_time'])
+        self.redis.hset('shot_time_settings', 'stop_time', request.form['stop_time'])
+        self.redis.hset('shot_time_settings', 'interval', int(request.form['interval']))
+
+        if(request.form['start_time'] == 'individual'):
+            self.redis.hset('shot_time_settings', 'start_individual_hour', request.form['start_time_hvalue'])
+            self.redis.hset('shot_time_settings', 'start_individual_minute', request.form['start_time_mvalue'])
+
+        if(request.form['stop_time'] == 'individual'):
+            self.redis.hset('shot_time_settings', 'stop_individual_hour', request.form['stop_time_hvalue'])
+            self.redis.hset('shot_time_settings', 'stop_individual_minute', request.form['stop_time_mvalue'])
+
+        return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller, errors=errors)
 
     def __validate_inputs(self):
         # initialize error array
