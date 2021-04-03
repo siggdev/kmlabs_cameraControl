@@ -22,3 +22,9 @@ input[type=number] {
 h6 {
     font-weight: bold;
 }
+
+#logo-large {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
