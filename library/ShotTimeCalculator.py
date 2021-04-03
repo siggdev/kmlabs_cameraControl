@@ -28,15 +28,15 @@ class ShotTimeCalculator:
     def __get_settings_or_default(self):
         start_time_setting = self.redis.hget('shot_time_settings', 'start_time')
         if start_time_setting:
-            if start_time_setting is 'sunrise':
+            if start_time_setting == 'sunrise':
                 self.start_time = self.redis.hget('suntimes', 'sunrise')
-            elif start_time_setting is 'civil':
+            elif start_time_setting == 'civil':
                 self.start_time = self.redis.hget('suntimes', 'civil_twilight_begin')
-            elif start_time_setting is 'nautical':
+            elif start_time_setting == 'nautical':
                 self.start_time = self.redis.hget('suntimes', 'nautical_twilight_begin')
-            elif start_time_setting is 'astronomical':
+            elif start_time_setting == 'astronomical':
                 self.start_time = self.redis.hget('suntimes', 'astronomical_twilight_begin')
-            elif start_time_setting is 'individual':
+            elif start_time_setting == 'individual':
                 hour = int(self.redis.hget('shot_time_settings', 'start_individual_hour'))
                 minute = int(self.redis.hget('shot_time_settings', 'start_individual_minute'))
                 self.start_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
@@ -51,16 +51,17 @@ class ShotTimeCalculator:
 
 
         stop_time_setting = self.redis.hget('shot_time_settings', 'stop_time')
+
         if stop_time_setting:
-            if stop_time_setting is 'sunrise':
+            if stop_time_setting == 'sunrise':
                 self.stop_time = self.redis.hget('suntimes', 'sunset')
-            elif stop_time_setting is 'civil':
+            elif stop_time_setting == 'civil':
                 self.stop_time = self.redis.hget('suntimes', 'civil_twilight_end')
-            elif stop_time_setting is 'nautical':
+            elif stop_time_setting == 'nautical':
                 self.stop_time = self.redis.hget('suntimes', 'nautical_twilight_end')
-            elif stop_time_setting is 'astronomical':
+            elif stop_time_setting == 'astronomical':
                 self.stop_time = self.redis.hget('suntimes', 'astronomical_twilight_end')
-            elif stop_time_setting is 'individual':
+            elif stop_time_setting == 'individual':
                 hour = int(self.redis.hget('shot_time_settings', 'stop_individual_hour'))
                 minute = int(self.redis.hget('shot_time_settings', 'stop_individual_minute'))
                 self.stop_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
@@ -74,7 +75,7 @@ class ShotTimeCalculator:
             self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
 
         try:
-            self.interval = timedelta(minutes=self.redis.hget('shot_time_settings', 'interval'))
+            self.interval = timedelta(minutes=int(self.redis.hget('shot_time_settings', 'interval')))
         except TypeError:
             self.interval = timedelta(minutes=15)
 
