@@ -11,7 +11,7 @@ class ShotTimeCalculator:
         self.__get_settings_or_default()
         self.__make_nice_start_time()
 
-        actual_time = datetime.now(tz=self.start_time.tzinfo)
+        actual_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
         self.shot_times = []
 
@@ -39,14 +39,14 @@ class ShotTimeCalculator:
             elif start_time_setting == 'individual':
                 hour = int(self.redis.hget('shot_time_settings', 'start_individual_hour'))
                 minute = int(self.redis.hget('shot_time_settings', 'start_individual_minute'))
-                self.start_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
+                self.start_time = datetime.now().replace(tzinfo=None).astimezone(tz=None).replace(hour=hour, minute=minute, second=0, microsecond=0)
             else:
                 self.start_time = None
         else:
             self.start_time = self.redis.hget('suntimes', 'sunrise')
 
         if not self.start_time:
-            self.start_time = datetime.now()
+            self.start_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
             self.start_time.replace(hour=6, minute=0, second=0, microsecond=0)
 
 
@@ -64,14 +64,14 @@ class ShotTimeCalculator:
             elif stop_time_setting == 'individual':
                 hour = int(self.redis.hget('shot_time_settings', 'stop_individual_hour'))
                 minute = int(self.redis.hget('shot_time_settings', 'stop_individual_minute'))
-                self.stop_time = datetime.now().replace(hour=hour, minute=minute, second=0, microsecond=0)
+                self.stop_time = datetime.now().replace(tzinfo=None).astimezone(tz=None).replace(hour=hour, minute=minute, second=0, microsecond=0)
             else:
                 self.stop_time = None
         else:
             self.stop_time = self.redis.hget('suntimes', 'sunset')
 
         if not self.stop_time:
-            self.stop_time = datetime.now()
+            self.stop_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
             self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
 
         try:
