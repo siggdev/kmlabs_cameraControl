@@ -1,5 +1,6 @@
 from flask import render_template, request, Response
 from .SunTimesLoader import SunTimesLoader
+from .ShotTimeCalculator import ShotTimeCalculator
 from .ShotController import ShotController
 from .RedisDriver import RedisDriver
 
@@ -52,9 +53,17 @@ class WebController:
             self.redis.hset('shot_time_settings', 'stop_individual_hour', request.form['stop_time_hvalue'])
             self.redis.hset('shot_time_settings', 'stop_individual_minute', request.form['stop_time_mvalue'])
 
+        if request.form['changeat'] == 'adhoc':
+            shot_calc = ShotTimeCalculator()
+            sun_times.write_to_redis()
+            shot_calc.calculate_shot_times()
+            shot_calc.write_to_redis()
+
+
         return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller, errors=errors)
 
     def __validate_inputs(self):
+
         # initialize error array
         errors = {}
         errors['bad_request'] = False
@@ -126,4 +135,7 @@ class WebController:
 
         return errors
 
+    def __get_actual_shot_settings(self):
+
+        shot_settings = {}
         
