@@ -52,7 +52,9 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="start_time" id="start_time_astronomical_tl" value="astronomical" {% if shot_settings['start_time'] == 'astronomical' %}checked{% endif %}>
-                                    <label class="form-check-label" for="start_time_astronomical_tl">
+                                    <label class="form-
+                                    print('hello?')
+                                    print(shot_settings)check-label" for="start_time_astronomical_tl">
                                         <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
                                     </label>
                                 </div>
@@ -61,9 +63,9 @@
                                     <label class="form-check-label" for="start_time_individual">
                                         <div class="input-group">
                                             <span class="input-group-text">individuell:</span>
-                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06" min="0" max="23" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_hour']}}"{% endif %}>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06" min="0" max="23" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_time_hvalue']}}"{% endif %}>
                                             <span class="input-group-text">:</span>
-                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00" min="0" max="59" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_minute']}}"{% endif %}>
+                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00" min="0" max="59" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_time_mvalue']}}"{% endif %}>
                                             <span class="input-group-text"> Uhr</span>
                                         </div>
                                     </label>
@@ -104,9 +106,9 @@
                                     <label class="form-check-label" for="stop_time_individual">
                                         <div class="input-group">
                                             <span class="input-group-text">individuell:</span>
-                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18" min="0" max="23" {% if shot_settings['stop_time'] == 'individual' %}value="{{shot_settings['stop_hour']}}"{% endif %}>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18" min="0" max="23" {% if shot_settings['stop_time'] == 'individual' %}value="{{ shot_settings['stop_time_hvalue'] }}"{% endif %}>
                                             <span class="input-group-text">:</span>
-                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00" min="0" max="23" {% if shot_settings['stop_time'] == 'individual' %}value="{{shot_settings['stop_minute']}}"{% endif %}>
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00" min="0" max="59" {% if shot_settings['stop_time'] == 'individual' %}value="{{ shot_settings['stop_time_mvalue'] }}"{% endif %}>
                                             <span class="input-group-text"> Uhr</span>
                                         </div>
                                     </label>
