@@ -14,8 +14,11 @@ class WebController:
     def serveIndexPage(self):
         # load sun info
         sun_times = SunTimesLoader()
+        shot_settings = self.__get_actual_shot_settings()
 
-        return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller)
+        print(shot_settings)
+
+        return render_template('index.html', sun_times=sun_times, shot_settings=shot_settings, shot_controller=self.shot_controller)
 
     def returnSecondsToNextShot(self):
         remaining_time = self.shot_controller.calculate_time_until_next_shot()
@@ -39,7 +42,7 @@ class WebController:
             return Response('invalid', 400)
 
         if errors['exist']:
-            return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller, errors=errors)
+            return render_template('index.html', sun_times=sun_times, shot_settings=request.form, shot_controller=self.shot_controller, errors=errors)
 
         self.redis.hset('shot_time_settings', 'start_time', request.form['start_time'])
         self.redis.hset('shot_time_settings', 'stop_time', request.form['stop_time'])
@@ -59,8 +62,7 @@ class WebController:
             shot_calc.calculate_shot_times()
             shot_calc.write_to_redis()
 
-
-        return render_template('index.html', sun_times=sun_times, shot_controller=self.shot_controller, errors=errors)
+        return render_template('index.html', sun_times=sun_times, shot_settings=request.form, shot_controller=self.shot_controller, errors=errors)
 
     def __validate_inputs(self):
 
@@ -139,3 +141,50 @@ class WebController:
 
         shot_settings = {}
         
+        #get start time
+        shot_settings['start_time'] = self.redis.hget('shot_time_settings', 'start_time')
+        if shot_settings['start_time'] is None:
+            shot_settings['start_time'] = 'sunrise'
+
+        if shot_settings['start_time'] == 'individual':
+            shot_settings['start_hour'] = self.redis.hget('shot_time_settings', 'start_individual_hour')
+            if shot_settings['start_hour'] is None:
+                shot_settings['start_hour'] = 6
+            else:
+                shot_settings['start_hour'] = int(shot_settings['shot_time_settings'])
+
+            
+            shot_settings['start_minute'] = self.redis.hget('shot_time_settings', 'start_individual_minute')
+            if shot_settings['start_minute'] is None:
+                shot_settings['start_minute'] = 6
+            else:
+                shot_settings['start_minute'] = int(shot_settings['start_minute'])
+
+        #get stop time
+        shot_settings['stop_time'] = self.redis.hget('shot_time_settings', 'stop_time')
+        if shot_settings['stop_time'] is None:
+            shot_settings['stop_time'] = 'sunset'
+
+
+        if shot_settings['stop_time'] == 'individual':
+            shot_settings['stop_hour'] = self.redis.hget('shot_time_settings', 'stop_individual_hour')
+            if shot_settings['stop_hour'] is None:
+                shot_settings['stop_hour'] = 6
+            else:
+                shot_settings['stop_hour'] = int(shot_settings['stop_hour'])
+
+            
+            shot_settings['stop_minute'] = self.redis.hget('shot_time_settings', 'stop_individual_minute')
+            if shot_settings['stop_minute'] is None:
+                shot_settings['stop_minute'] = 6
+            else:
+                shot_settings['stop_minute'] = int(shot_settings['stop_minute'])
+
+        #get interval
+        shot_settings['interval'] = self.redis.hget('shot_time_settings', 'interval')
+        if shot_settings['interval'] is None:
+            shot_settings['interval'] = 10
+        else:
+            shot_settings['interval'] = int(shot_settings['interval'])
+
+        return shot_settings

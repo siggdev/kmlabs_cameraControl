@@ -34,37 +34,37 @@
                             <div class="card-body time-selector">
                                 <h6>Startzeit:</h6><br>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_sunrise" value="sunrise" checked>
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_sunrise" value="sunrise" {% if shot_settings['start_time'] == 'sunrise' %}checked{% endif %}>
                                     <label class="form-check-label" for="start_time_sunrise">
                                         <img src="assets/img/sunrise.svg" class="radio-image"> Sonnenaufgang
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_civil_tl" value="civil">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_civil_tl" value="civil" {% if shot_settings['start_time'] == 'civil' %}checked{% endif %}>
                                     <label class="form-check-label" for="start_time_civil_tl">
                                         <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_nautical_tl" value="nautical">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_nautical_tl" value="nautical" {% if shot_settings['start_time'] == 'nautical' %}checked{% endif %}>
                                     <label class="form-check-label" for="start_time_nautical_tl">
                                     <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_astronomical_tl" value="astronomical">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_astronomical_tl" value="astronomical" {% if shot_settings['start_time'] == 'astronomical' %}checked{% endif %}>
                                     <label class="form-check-label" for="start_time_astronomical_tl">
                                         <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_individual" value="individual">
+                                    <input class="form-check-input" type="radio" name="start_time" id="start_time_individual" value="individual" {% if shot_settings['start_time'] == 'individual' %}checked{% endif %}>
                                     <label class="form-check-label" for="start_time_individual">
                                         <div class="input-group">
                                             <span class="input-group-text">individuell:</span>
-                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06" min="0" max="23">
+                                            <input type="number" class="form-control form-control-sm" id="start_time_hvalue" name="start_time_hvalue" placeholder="06" min="0" max="23" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_hour']}}"{% endif %}>
                                             <span class="input-group-text">:</span>
-                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00" min="0" max="59">
+                                            <input type="number" class="form-control form-control-sm" id="start_time_mvalue" name="start_time_mvalue" placeholder="00" min="0" max="59" {% if shot_settings['start_time'] == 'individual' %}value="{{shot_settings['start_minute']}}"{% endif %}>
                                             <span class="input-group-text"> Uhr</span>
                                         </div>
                                     </label>
@@ -77,37 +77,37 @@
                             <div class="card-body time-selector">
                                 <h6>Stopzeit:</h6><br>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_sunset" value="sunset" checked>
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_sunset" value="sunset" {% if shot_settings['stop_time'] == 'sunset' %}checked{% endif %}>
                                     <label class="form-check-label" for="stop_time_sunset">
                                         <img src="assets/img/sunset.svg" class="radio-image"> Sonnenuntergang
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_civil_tl" value="civil">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_civil_tl" value="civil" {% if shot_settings['stop_time'] == 'civil' %}checked{% endif %}>
                                     <label class="form-check-label" for="stop_time_civil_tl">
                                         <img src="assets/img/civil_twilight_begin.svg" class="radio-image"> ziviles Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_nautical_tl" value="nautical">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_nautical_tl" value="nautical" {% if shot_settings['stop_time'] == 'nautical' %}checked{% endif %}>
                                     <label class="form-check-label" for="stop_time_nautical_tl">
                                     <img src="assets/img/nautical_twilight_begin.svg" class="radio-image"> nautisches Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_astronomical_tl" value="astronomical">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_astronomical_tl" value="astronomical" {% if shot_settings['stop_time'] == 'astronomical' %}checked{% endif %}>
                                     <label class="form-check-label" for="stop_time_astronomical_tl">
                                         <img src="assets/img/astronomical_twilight_begin.svg" class="radio-image"> astronomisches Zwielicht
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_individual" value="individual">
+                                    <input class="form-check-input" type="radio" name="stop_time" id="stop_time_individual" value="individual" {% if shot_settings['stop_time'] == 'individual' %}checked{% endif %}>
                                     <label class="form-check-label" for="stop_time_individual">
                                         <div class="input-group">
                                             <span class="input-group-text">individuell:</span>
-                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18" min="0" max="23">
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_hvalue" name="stop_time_hvalue" placeholder="18" min="0" max="23" {% if shot_settings['stop_time'] == 'individual' %}value="{{shot_settings['stop_hour']}}"{% endif %}>
                                             <span class="input-group-text">:</span>
-                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00" min="0" max="23">
+                                            <input type="number" class="form-control form-control-sm" id="stop_time_mvalue" name="stop_time_mvalue" placeholder="00" min="0" max="23" {% if shot_settings['stop_time'] == 'individual' %}value="{{shot_settings['stop_minute']}}"{% endif %}>
                                             <span class="input-group-text"> Uhr</span>
                                         </div>
                                     </label>
@@ -120,7 +120,7 @@
                             <div class="card-body time-selector">
                                 <h6>Interval:</h6><br>
                                 <div class="input-group">
-                                    <input type="number" class="form-control form-control-sm" id="interval" name="interval" placeholder="00" min="1" max="1200">
+                                    <input type="number" class="form-control form-control-sm" id="interval" name="interval" placeholder="00" min="1" max="1200" value="{{shot_settings['interval']}}">
                                     <span class="input-group-text"> Minuten</span>
                                 </div>
                                 {% if errors is defined and errors['interval']|length %}
