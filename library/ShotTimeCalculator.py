@@ -47,13 +47,13 @@ class ShotTimeCalculator:
 
         if not self.start_time:
             self.start_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
-            self.start_time.replace(hour=6, minute=0, second=0, microsecond=0)
+            self.start_time = self.start_time.replace(hour=6, minute=0, second=0, microsecond=0)
 
 
         stop_time_setting = self.redis.hget('shot_time_settings', 'stop_time')
 
-        if stop_time_setting:
-            if stop_time_setting == 'sunrise':
+         if stop_time_setting:
+            if stop_time_setting == 'sunset':
                 self.stop_time = self.redis.hget('suntimes', 'sunset')
             elif stop_time_setting == 'civil':
                 self.stop_time = self.redis.hget('suntimes', 'civil_twilight_end')
@@ -72,7 +72,7 @@ class ShotTimeCalculator:
 
         if not self.stop_time:
             self.stop_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
-            self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
+            self.stop_time = self.stop_time.replace(hour=21, minute=0, second=0, microsecond=0)
 
         try:
             self.interval = timedelta(minutes=int(self.redis.hget('shot_time_settings', 'interval')))
