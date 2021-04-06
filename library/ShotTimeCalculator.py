@@ -52,7 +52,7 @@ class ShotTimeCalculator:
 
         stop_time_setting = self.redis.hget('shot_time_settings', 'stop_time')
 
-         if stop_time_setting:
+        if stop_time_setting:
             if stop_time_setting == 'sunset':
                 self.stop_time = self.redis.hget('suntimes', 'sunset')
             elif stop_time_setting == 'civil':
