@@ -46,7 +46,6 @@ class WebController:
         for day in self.days:
             if day in request.form:
                 self.redis.hset('shot_time_settings', day, 1)
-                print(day)
             else:
                 self.redis.hset('shot_time_settings', day, 0)
 
@@ -198,5 +197,4 @@ class WebController:
         else:
             shot_settings['interval'] = int(shot_settings['interval'])
 
-        print(shot_settings)
         return shot_settings

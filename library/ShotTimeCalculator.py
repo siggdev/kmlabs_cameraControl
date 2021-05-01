@@ -38,7 +38,7 @@ class ShotTimeCalculator:
     def __get_settings_or_default(self):
         self.shot_days = []
         for day in self.days.keys():
-            if(self.redis.hget('shot_time_settings', day) == 1):
+            if(self.redis.hget('shot_time_settings', day) == '1'):
                 self.shot_days.append(self.days[day])
 
         start_time_setting = self.redis.hget('shot_time_settings', 'start_time')
