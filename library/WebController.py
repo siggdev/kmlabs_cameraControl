@@ -10,6 +10,7 @@ class WebController:
         self.app = flask_app
         self.shot_controller = ShotController()
         self.redis = RedisDriver()
+        self.days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
     def serveIndexPage(self):
         # load sun info
@@ -41,6 +42,13 @@ class WebController:
 
         if errors['exist']:
             return render_template('index.html', sun_times=sun_times, shot_settings=request.form, shot_controller=self.shot_controller, errors=errors)
+
+        for day in self.days:
+            if day in request.form:
+                self.redis.hset('shot_time_settings', day, 1)
+                print(day)
+            else:
+                self.redis.hset('shot_time_settings', day, 0)
 
         self.redis.hset('shot_time_settings', 'start_time', request.form['start_time'])
         self.redis.hset('shot_time_settings', 'stop_time', request.form['stop_time'])
@@ -138,6 +146,11 @@ class WebController:
     def __get_actual_shot_settings(self):
 
         shot_settings = {}
+
+        #get shot days
+        for day in self.days:
+            if self.redis.hget('shot_time_settings', day) == '1':
+                shot_settings[day] = 'on'
         
         #get start time
         shot_settings['start_time'] = self.redis.hget('shot_time_settings', 'start_time')
@@ -185,4 +198,5 @@ class WebController:
         else:
             shot_settings['interval'] = int(shot_settings['interval'])
 
+        print(shot_settings)
         return shot_settings

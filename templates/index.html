@@ -11,19 +11,19 @@
                             </div>
                             <div class="card-body">
                                 <h6>Wochentage:</h6><br>
-                                <input type="checkbox" class="btn-check" id="monday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="monday" class="btn-check" id="monday_checkbox" autocomplete="off" {% if 'monday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="monday_checkbox">Mo</label>
-                                <input type="checkbox" class="btn-check" id="tuesday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="tuesday" class="btn-check" id="tuesday_checkbox" autocomplete="off" {% if 'tuesday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="tuesday_checkbox">Di</label>
-                                <input type="checkbox" class="btn-check" id="wednesday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="wednesday" class="btn-check" id="wednesday_checkbox" autocomplete="off" {% if 'wednesday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="wednesday_checkbox">Mi</label>
-                                <input type="checkbox" class="btn-check" id="thursday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="thursday" class="btn-check" id="thursday_checkbox" autocomplete="off" {% if 'thursday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="thursday_checkbox">Do</label>
-                                <input type="checkbox" class="btn-check" id="friday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="friday" class="btn-check" id="friday_checkbox" autocomplete="off" {% if 'friday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="friday_checkbox">Fr</label>
-                                <input type="checkbox" class="btn-check" id="saturday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="saturday" class="btn-check" id="saturday_checkbox" autocomplete="off" {% if 'saturday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="saturday_checkbox">Sa</label>
-                                <input type="checkbox" class="btn-check" id="sunday_checkbox" autocomplete="off">
+                                <input type="checkbox" name="sunday" class="btn-check" id="sunday_checkbox" autocomplete="off" {% if 'sunday' in shot_settings %}checked{% endif %}>
                                 <label class="btn btn-sm btn-outline-primary" for="sunday_checkbox">So</label>
                             </div>
                             <hr>
