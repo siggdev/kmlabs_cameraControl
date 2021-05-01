@@ -6,6 +6,15 @@ class ShotTimeCalculator:
     def __init__(self):
         self.shot_times = []
         self.redis = RedisDriver()
+        self.days = {
+            'monday': 0,
+            'tuesday': 1,
+            'wednesday': 2,
+            'thursday': 3,
+            'friday': 4,
+            'saturday': 5,
+            'sunday': 6,
+        }
         
     def calculate_shot_times(self):
         self.__get_settings_or_default()
@@ -13,19 +22,25 @@ class ShotTimeCalculator:
 
         actual_time = datetime.now().replace(tzinfo=None).astimezone(tz=None)
 
-        self.shot_times = []
+        if actual_time.weekday() in self.shot_days:
+            self.shot_times = []
 
-        if self.start_time > actual_time:
-            self.shot_times.append(self.start_time)
+            if self.start_time > actual_time:
+                self.shot_times.append(self.start_time)
 
-        time_counter = self.start_time
+            time_counter = self.start_time
 
-        while time_counter < self.stop_time:
-            time_counter += self.interval
-            if time_counter > actual_time:
-                self.shot_times.append(time_counter)
+            while time_counter < self.stop_time:
+                time_counter += self.interval
+                if time_counter > actual_time:
+                    self.shot_times.append(time_counter)
 
     def __get_settings_or_default(self):
+        self.shot_days = []
+        for day in self.days.keys():
+            if(self.redis.hget('shot_time_settings', day) == 1):
+                self.shot_days.append(self.days[day])
+
         start_time_setting = self.redis.hget('shot_time_settings', 'start_time')
         if start_time_setting:
             if start_time_setting == 'sunrise':
