@@ -13,7 +13,7 @@ apt install python3 redis git -y
 # RPi.GPIO to control RPi GPIOs
 # redis to communicate with internal redis db
 # flask to run the webserver for the settings
-pip3 install RPI.GPIO redis flask
+pip3 install RPI.GPIO redis flask waitress
 
 
 ## make directory for camera timer project
