@@ -20,6 +20,12 @@ pip3 install RPI.GPIO redis flask waitress
 # /opt/camcontrol
 mkdir /opt/camcontrol
 
+## set static ip
+echo "interface eth0" >> /etc/dhcpcd.conf
+echo "static ip_address=192.168.178.22/24" >> /etc/dhcpcd.conf
+echo "static routers=192.168.178.1" >> /etc/dhcpcd.conf
+echo "static domain_name_servers=192.168.178.1 8.8.8.8" >> /etc/dhcpcd.conf
+
 
 ## write cronjobs for camera timer jobs
 # first job minutely to check if shot is due
