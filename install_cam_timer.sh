@@ -24,8 +24,8 @@ mkdir /opt/camcontrol
 ## write cronjobs for camera timer jobs
 # first job minutely to check if shot is due
 # second job every day midnight to calculate new shot times
-echo "* * * * * /usr/bin/python3 /opt/camcontrol/make_shot_if_due.py >/dev/null 2>&1" >> /etc/crontab
-echo "2 0 * * * /usr/bin/python3 /opt/camcontrol/generate_shot_times.py" >> /etc/crontab
+echo "* * * * * root /usr/bin/python3 /opt/camcontrol/make_shot_if_due.py >/dev/null 2>&1" >> /etc/crontab
+echo "2 0 * * * root /usr/bin/python3 /opt/camcontrol/generate_shot_times.py" >> /etc/crontab
 
 ## write service file for web service
 echo "[Unit]" >> /etc/systemd/system/camcontrol.service
